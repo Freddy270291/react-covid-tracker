@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  MenuItem,
-  FormControl,
-  Select,
-  Card,
-  CardContent,
-} from "@material-ui/core";
+import { MenuItem, FormControl, Select } from "@material-ui/core";
 import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [country, setCountry] = useState(["worldwide"]);
 
   useEffect(() => {
     // The code inside here will run once when the component loads, not again
@@ -29,28 +24,33 @@ function App() {
     getCountriesData();
   }, []);
 
+  const onCountryChange = async (e) => {
+    const countryCode = e.target.value;
+    setCountry(countryCode);
+  };
+
   return (
     <div className="app">
-      <div className="app_header">
+      <div className="app__header">
         <h1>Covid19 tracker</h1>
         <FormControl className="app__dropdown">
-          <Select variant="outlined" value="abc">
-            {/* Loop through all the countries and show them as options */}
-
+          <Select variant="outlined" value={country} onChange={onCountryChange}>
+            <MenuItem value="worldwide">Worldwide</MenuItem>
             {countries.map((country) => (
               <MenuItem value={country.value}>{country.name}</MenuItem>
             ))}
           </Select>
         </FormControl>
-        {/* Header */}
-        {/* Title + select input dropdown field */}
-        {/* InfoBoxs */}
-        {/* InfoBoxs */}
-        {/* InfoBoxs */}
-        {/* Table */}
-        {/* Graph */}
-        {/* Map */}
       </div>
+
+      <div className="app__stats">
+        {/* InfoBoxs title="Coronavirus cases" */}
+        {/* InfoBoxs "Coronavirus recoveries" */}
+        {/* InfoBoxs */}
+      </div>
+      {/* Table */}
+      {/* Graph */}
+      {/* Map */}
     </div>
   );
 }
