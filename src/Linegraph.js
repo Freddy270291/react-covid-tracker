@@ -46,7 +46,7 @@ const options = {
   },
 };
 
-function Linegraph() {
+function Linegraph({ casesType = "cases" }) {
   const [data, setData] = useState({});
 
   // https://disease.sh/v3/covid-19/historical/all?lastdays=120
@@ -78,7 +78,7 @@ function Linegraph() {
         });
     };
     fetchData();
-  }, []);
+  }, [casesType]);
 
   return (
     <div>
@@ -101,5 +101,3 @@ function Linegraph() {
 }
 
 export default Linegraph;
-
-// 3:05:00
