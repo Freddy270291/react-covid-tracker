@@ -46,7 +46,7 @@ const options = {
   },
 };
 
-function Linegraph({ casesType = "cases" }) {
+function Linegraph({ casesType = "cases", ...props }) {
   const [data, setData] = useState({});
 
   // https://disease.sh/v3/covid-19/historical/all?lastdays=120
@@ -81,7 +81,7 @@ function Linegraph({ casesType = "cases" }) {
   }, [casesType]);
 
   return (
-    <div>
+    <div className={props.className}>
       {data?.length > 0 && (
         <Line
           options={options}
